@@ -10,13 +10,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector } from 'redux/contacts/selectors';
 import { filterSelector } from 'redux/filter/selectors';
 
-export default function ContactList() {  
+export default function ContactList() {
   const dispatch = useDispatch();
   const { contacts } = useSelector(contactsSelector);
   const { filter } = useSelector(filterSelector);
   const getFilteredContacts = filteredContacts(contacts, filter);
-  console.log('getFilteredContacts :>> ', getFilteredContacts);
-
+  
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
