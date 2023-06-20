@@ -1,5 +1,4 @@
 export const filteredContacts = (contacts, filter) => {
-   
   if (!filter) {
     return contacts;
   } else {
@@ -7,4 +6,4 @@ export const filteredContacts = (contacts, filter) => {
       return contact.name.toLowerCase().includes(filter.toLowerCase());
     });
   }
-  };
+};

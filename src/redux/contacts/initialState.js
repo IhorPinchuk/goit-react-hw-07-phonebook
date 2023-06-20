@@ -1,5 +1,5 @@
 export const initialState = {
   contacts: [],
   isLoading: false,
-    error: null
+  error: null,
 };

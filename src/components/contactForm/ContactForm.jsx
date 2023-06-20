@@ -3,17 +3,14 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { postContactsThunk } from 'components/services/contactsThunk';
-// import { contactsFilterSelector } from 'redux/filter/selectors';
 import { contactsSelector } from 'redux/contacts/selectors';
 
-
 export const ContactForm = () => {
-  // const contacts = useSelector(contactsFilterSelector);
-  const {contacts} = useSelector(contactsSelector);
+  const { contacts } = useSelector(contactsSelector);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const newContact = {    
+  const newContact = {
     name,
     phone,
   };
@@ -28,13 +25,15 @@ export const ContactForm = () => {
     setPhone(value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();    
-    const contactNameToLowerCase = contacts.map(contact => contact.name.toLowerCase())    
+  const handleSubmit = e => {
+    e.preventDefault();
+    const contactNameToLowerCase = contacts.map(contact =>
+      contact.name.toLowerCase()
+    );
     if (contactNameToLowerCase.includes(name.toLowerCase())) {
       Notify.failure(`${name} is already in contacts.`);
-        return;
-    }   
+      return;
+    }
     dispatch(postContactsThunk(newContact));
     reset();
   };
